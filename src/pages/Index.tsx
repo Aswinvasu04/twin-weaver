@@ -3,6 +3,7 @@ import { PromptChat } from "@/components/PromptChat";
 import { TwinVisualizer } from "@/components/TwinVisualizer";
 import { SimulationDashboard } from "@/components/SimulationDashboard";
 import { ExportPanel } from "@/components/ExportPanel";
+import { CodeEditorPanel } from "@/components/CodeEditorPanel";
 import {
   TwinConfig,
   SimulationState,
