@@ -106,19 +106,24 @@ const Index = () => {
       </header>
 
       {/* Main Grid */}
-      <main className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 min-h-0 overflow-hidden">
+      <main className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 min-h-0 overflow-auto">
         {/* Chat */}
         <div className="lg:col-span-3 min-h-[300px] lg:min-h-0 lg:h-[calc(100vh-5rem)]">
           <PromptChat onSubmit={handlePromptSubmit} isSimulating={isGenerating} />
         </div>
 
         {/* Visualizer */}
-        <div className="lg:col-span-5 min-h-[300px] lg:min-h-0 lg:h-[calc(100vh-5rem)]">
+        <div className="lg:col-span-3 min-h-[300px] lg:min-h-0 lg:h-[calc(100vh-5rem)]">
           <TwinVisualizer config={config} state={simState} />
         </div>
 
+        {/* Code Editor */}
+        <div className="lg:col-span-3 min-h-[300px] lg:min-h-0 lg:h-[calc(100vh-5rem)]">
+          <CodeEditorPanel config={config} />
+        </div>
+
         {/* Dashboard */}
-        <div className="lg:col-span-4 min-h-[300px] lg:min-h-0 lg:h-[calc(100vh-5rem)]">
+        <div className="lg:col-span-3 min-h-[300px] lg:min-h-0 lg:h-[calc(100vh-5rem)]">
           <SimulationDashboard config={config} state={simState} history={history} />
         </div>
       </main>
