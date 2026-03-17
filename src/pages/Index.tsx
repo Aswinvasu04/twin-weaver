@@ -13,8 +13,9 @@ import {
   simulateStep,
   parsePromptToConfig,
 } from "@/lib/simulation";
-import { Play, Pause, RotateCcw, Download } from "lucide-react";
-
+import { useTwins, useSaveTwin } from "@/hooks/use-twins";
+import { Play, Pause, RotateCcw, Save, FolderOpen } from "lucide-react";
+import { toast } from "sonner";
 const Index = () => {
   const [config, setConfig] = useState<TwinConfig>(createDefaultTwin());
   const [simState, setSimState] = useState<SimulationState>(() => initState(createDefaultTwin()));
