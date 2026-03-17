@@ -67,6 +67,31 @@ const Index = () => {
     }, 1200);
   };
 
+  const handleSave = () => {
+    saveTwin.mutate(
+      { name: config.name, config },
+      {
+        onSuccess: (data) => {
+          setSavedTwinId(data.id);
+          toast.success("Twin saved to MySQL!");
+        },
+        onError: (err) => {
+          toast.error(`Save failed: ${err.message}. Is the Express server running on localhost:3001?`);
+        },
+      }
+    );
+  };
+
+  const handleLoadTwin = (twin: { config: TwinConfig }) => {
+    const loadedConfig = twin.config;
+    setConfig(loadedConfig);
+    setSimState(initState(loadedConfig));
+    setHistory({ timestamps: [], series: {} });
+    setRunning(false);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    toast.success("Twin loaded!");
+  };
+
   const handleReset = () => {
     setRunning(false);
     if (intervalRef.current) clearInterval(intervalRef.current);
