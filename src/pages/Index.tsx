@@ -22,7 +22,11 @@ const Index = () => {
   const [history, setHistory] = useState<SimulationHistory>({ timestamps: [], series: {} });
   const [running, setRunning] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [savedTwinId, setSavedTwinId] = useState<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
+
+  const { data: savedTwins } = useTwins();
+  const saveTwin = useSaveTwin();
 
   const step = useCallback(() => {
     setSimState(prev => {
