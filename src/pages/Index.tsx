@@ -131,6 +131,35 @@ const Index = () => {
           >
             <RotateCcw className="w-4 h-4" />
           </button>
+          <button
+            onClick={handleSave}
+            disabled={saveTwin.isPending}
+            className="flex items-center gap-1.5 px-3 py-2 text-sm rounded-lg bg-primary/20 text-primary border border-primary/30 hover:bg-primary/30 transition-colors disabled:opacity-50"
+            title="Save to MySQL"
+          >
+            <Save className="w-4 h-4" />
+          </button>
+          {savedTwins && savedTwins.length > 0 && (
+            <div className="relative group">
+              <button
+                className="flex items-center gap-1.5 px-3 py-2 text-sm rounded-lg bg-secondary text-secondary-foreground border border-border/30 hover:bg-secondary/80 transition-colors"
+                title="Load saved twin"
+              >
+                <FolderOpen className="w-4 h-4" />
+              </button>
+              <div className="absolute right-0 top-full mt-1 w-56 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                {savedTwins.map((twin) => (
+                  <button
+                    key={twin.id}
+                    onClick={() => handleLoadTwin(twin as any)}
+                    className="w-full text-left px-3 py-2 text-sm text-foreground hover:bg-secondary transition-colors first:rounded-t-lg last:rounded-b-lg"
+                  >
+                    {twin.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <ExportPanel config={config} />
         </div>
       </header>
